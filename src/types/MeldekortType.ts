@@ -20,7 +20,7 @@ export interface MeldekortData {
   resterendeFeriedager: number;
 }
 
-interface NesteMeldekortFraApi {
+export interface NesteMeldekortFraApi {
   fra: string;
   kanSendesFra: string;
   til: string;

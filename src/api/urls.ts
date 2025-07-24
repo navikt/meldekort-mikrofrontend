@@ -21,6 +21,12 @@ const MELDEKORT_API_URL: EnvUrl = {
   production: "https://www.nav.no/tms-min-side-proxy/meldekort/api/person/meldekortstatus",
 };
 
+const MELDEKORTREGISTER_URL: EnvUrl = {
+  local: "http://localhost:3000/api/meldekortinfo",
+  development: "https://www.intern.dev.nav.no/tms-min-side-proxy/dpmeldekort/meldekortstatus",
+  production: "https://www.nav.no/tms-min-side-proxy/dpmeldekort/meldekortstatus",
+};
+
 const MELDEKORT_URL: EnvUrl = {
   local: "http://localhost:3000/meldekort",
   development: "https://meldekort-frontend-q2.intern.dev.nav.no/meldekort",
@@ -35,4 +41,5 @@ const ETTERREGISTRERING_MELDEKORT_URL: EnvUrl = {
 
 export const meldekortUrl = MELDEKORT_URL[getEnvironment()];
 export const meldekortApiUrl = MELDEKORT_API_URL[getEnvironment()];
+export const meldekortregisterUrl = MELDEKORTREGISTER_URL[getEnvironment()];
 export const etterregistreringUrl = ETTERREGISTRERING_MELDEKORT_URL[getEnvironment()];
