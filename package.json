@@ -17,7 +17,7 @@
     "@navikt/ds-react": "7.28.1",
     "@navikt/nav-dekoratoren-moduler": "3.4.0",
     "dayjs": "1.11.13",
-    "react": "18.3.1",
+    "react": "19.1.1",
     "react-dom": "18.3.1",
     "react-intl": "7.1.11",
     "swr": "2.3.6"
@@ -27,7 +27,7 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@testing-library/react": "16.3.0",
     "@testing-library/user-event": "14.6.1",
-    "@types/react": "18.3.24",
+    "@types/react": "19.1.11",
     "@types/react-dom": "18.3.7",
     "@types/react-modal": "3.16.3",
     "@typescript-eslint/eslint-plugin": "8.40.0",
