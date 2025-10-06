@@ -3,7 +3,6 @@
 // to the user instead.
 
 import { Heading } from "@navikt/ds-react";
-import ClientIsland from "@src/components/ClientIsland";
 import { text } from "@src/language/text";
 import type { Language } from "@src/language/types";
 import styles from "@src/styles/index.module.css";
@@ -14,11 +13,11 @@ const language = Astro.currentLocale as Language;
 ---
 
 {isLocal && <meta charset="UTF-8" />}
-<section class="tms-microfrontend-template-ssr">
+<section class="meldekort-mikrofrontend">
   <div class={styles.microfrontend}>
     <Heading size="medium" level="2">
-      {text.title[language]}
+      {text.tittel[language]}
     </Heading>
-    <ClientIsland client:only="react" />
+    {text.feilmelding[language]}
   </div>
 </section>

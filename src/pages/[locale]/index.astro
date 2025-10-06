@@ -1,42 +1,38 @@
 ---
-import { EXAMPLE_API_URL } from "astro:env/server";
-import { BodyShort, Heading, Link } from "@navikt/ds-react";
-import ClientIsland from "@src/components/ClientIsland";
-import { text } from "@src/language/text";
+import MeldekortEtterregistrering from "@src/components/MeldekortEtterregistrering";
+import MeldekortPending from "@src/components/MeldekortPending";
+import MeldekortReady from "@src/components/MeldekortReady";
 import type { Language } from "@src/language/types";
 import styles from "@src/styles/index.module.css";
-import { fetchExampleData } from "@src/utils/fetch";
 import { logger } from "@src/utils/logger";
-import { getOboToken } from "@src/utils/token";
 import "@src/styles/aksel.css";
 import { isLocal } from "../../utils/environment";
+import { hentMeldekortDataFraApi, prosesserMeldekortDataFraApi } from "@src/utils/meldekortData.ts";
 
-const oboToken = await getOboToken(Astro.locals.token);
-let exampleData;
+let meldekortDataFraApi;
 
 try {
-  exampleData = await fetchExampleData(oboToken, EXAMPLE_API_URL);
+  meldekortDataFraApi = await hentMeldekortDataFraApi(Astro.locals.token)
 } catch (error) {
-  logger.error("Error fetching example data: " + error);
+  logger.error("Error fetching meldekortdata: " + error);
   return new Response("Internal Server Error", { status: 503 });
 }
 
+const {
+  isPendingForInnsending,
+  isReadyForInnsending,
+  meldekortData
+} = prosesserMeldekortDataFraApi(meldekortDataFraApi);
 const language = Astro.currentLocale as Language;
 ---
 
-{isLocal && <meta charset="UTF-8" />}
-<section class="tms-microfrontend-template-ssr">
+{isLocal &&
+<meta charset="UTF-8"/>}
+<section class="meldekort-mikrofrontend">
   <div class={styles.microfrontend}>
-    <Heading size="medium" level="2">
-      {text.title[language]}
-    </Heading>
-    <BodyShort>
-      {text.name[language]}: {exampleData.name}
-    </BodyShort>
-    <Link href="#" id="link">
-      {text.link[language]}
-    </Link>
-    <ClientIsland client:only="react" />
+    <MeldekortEtterregistrering language={language} meldekort={meldekortData}/>
+    {isPendingForInnsending ? <MeldekortPending language={language} meldekort={meldekortData}/> : null}
+    {isReadyForInnsending ? <MeldekortReady language={language} meldekort={meldekortData}/> : null}
   </div>
 </section>
 <script>

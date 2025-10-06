@@ -8,7 +8,7 @@ import importmap from "./importmap.json";
 // https://astro.build/config
 export default defineConfig({
   build: {
-    assetsPrefix: "https://cdn.nav.no/min-side/tms-microfrontend-template-ssr",
+    assetsPrefix: "https://cdn.nav.no/meldekort/meldekort-mikrofrontend",
     inlineStylesheets: "always",
   },
   vite: {
@@ -16,7 +16,7 @@ export default defineConfig({
       postcss: {
         plugins: [
           prefixer({
-            prefix: ".tms-microfrontend-template-ssr",
+            prefix: ".meldekort-mikrofrontend",
             ignoreFiles: [/module.css/],
           }),
         ],
@@ -53,10 +53,35 @@ export default defineConfig({
   }),
   env: {
     schema: {
-      EXAMPLE_API_URL: envField.string({
+      MELDEKORT_URL: envField.string({
         context: "server",
         access: "secret",
-        default: "http://localhost:3000/api/tms-astro-template",
+        default: "http://localhost:8080/send-meldekort",
+      }),
+      ETTERREGISTRERING_MELDEKORT_URL: envField.string({
+        context: "server",
+        access: "secret",
+        default: "http://localhost:8080/etterregistrer-meldekort",
+      }),
+      MELDEKORT_API_AUDIENCE: envField.string({
+        context: "server",
+        access: "secret",
+        default: "test:meldekort:meldekort-api",
+      }),
+      MELDEKORT_API_URL: envField.string({
+        context: "server",
+        access: "secret",
+        default: "http://localhost:3000/meldekort-api/meldekortstatus",
+      }),
+      MELDEKORTREGISTER_AUDIENCE: envField.string({
+        context: "server",
+        access: "secret",
+        default: "test:teamdagpenger:dp-meldekortregister",
+      }),
+      MELDEKORTREGISTER_URL: envField.string({
+        context: "server",
+        access: "secret",
+        default: "http://localhost:3000/meldekortregister/meldekortstatus",
       }),
     },
   },

@@ -36,15 +36,15 @@ jobs:
       - name: "Upload to cdn"
         uses: nais/deploy/actions/cdn-upload/v2@master
         with:
-          team: min-side # Change this to your team name
+          team: meldekort
           source: ./dist/client/_astro
-          destination: 'tms-microfrontend-template-ssr' # Change this to your application name
+          destination: "meldekort-mikrofrontend"
 
       - name: "Build and push"
         uses: nais/docker-build-push@v0
         id: docker-build-push
         with:
-          team: min-side # Change this to your team name
+          team: meldekort
 
     outputs:
       image: ${{ steps.docker-build-push.outputs.image }}
@@ -53,28 +53,28 @@ jobs:
     uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest-v3.yaml@main
     needs: build
     with:
-      id: "tms-microfrontend-template-ssr" # Change this to your application name
-      url: "http://tms-microfrontend-template-ssr" # Change the url to contain your application name. Example: http://my-app
-      appname: "tms-microfrontend-template-ssr" # Change this to your application name
-      namespace: "min-side" # Change this to your namespace
+      id: "meldekort-mikrofrontend"
+      url: "http://meldekort-mikrofrontend.meldekort"
+      appname: "meldekort-mikrofrontend"
+      namespace: "meldekort"
       cluster: dev-gcp
       commitmsg: ${{ github.event.head_commit.message}}
-      fallback: "fallback" # Should containt the path to the fallback page after src/pages/[locale]/... Only needs to be changed if you move the fallback in the pages structure
+      fallback: "fallback" # Should contain the path to the fallback page after src/pages/[locale]/... Only needs to be changed if you move the fallback in the page structure
       ssr: true
     secrets: inherit
 
   # update-manifest-prod:
-  #   if: github.ref == 'refs/heads/main'
+  #   if: github.ref == "refs/heads/main"
   #   uses: navikt/tms-deploy/.github/workflows/oppdater-mikrofrontend-manifest-v3.yaml@main
   #   needs: build
   #   with:
-  #     id: "tms-microfrontend-template-ssr-id"
-  #     url: "http://tms-microfrontend-template-ssr.min-side"
-  #     appname: "tms-microfrontend-template-ssr"
-  #     namespace: "team-namespace"
+  #     id: "meldekort-mikrofrontend"
+  #     url: "http://meldekort-mikrofrontend.meldekort"
+  #     appname: "meldekort-mikrofrontend"
+  #     namespace: "meldekort"
   #     cluster: prod-gcp
   #     commitmsg: ${{ github.event.head_commit.message}}
-  #     fallback: "fallback" # Should containt the path to the fallback page after src/pages/[locale]/...
+  #     fallback: "fallback" # Should contain the path to the fallback page after src/pages/[locale]/...
   #     ssr: true
   #   secrets: inherit
 
@@ -94,7 +94,7 @@ jobs:
           VAR: image=${{ needs.build.outputs.image }},version=${{ github.sha }}
 
   # deploy-prod:
-  #   if: github.ref == 'refs/heads/main'
+  #   if: github.ref == "refs/heads/main"
   #   runs-on: "ubuntu-latest"
   #   permissions:
   #     contents: "read"

@@ -1,10 +1,10 @@
 apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: tms-microfrontend-template-ssr # Change this to your application name
-  namespace: min-side # Change this to your namespace
+  name: meldekort-mikrofrontend
+  namespace: meldekort
   labels:
-    team: min-side # Change this to your team name
+    team: meldekort
 spec:
   tokenx:
     enabled: true
@@ -24,12 +24,27 @@ spec:
       rules:
         - application: tms-min-side
           namespace: min-side
+    outbound:
+      rules:
+        - application: meldekort-api-q2
+        - application: dp-meldekortregister
+          namespace: teamdagpenger
   resources:
     limits:
       memory: 768Mi
     requests:
       cpu: "20m"
       memory: 128Mi
-  env: # Add your environment variables here
-    - name: EXAMPLE_API_URL
-      value: "https://example.dev.nav.no/api"
+  env:
+    - name: MELDEKORT_API_AUDIENCE
+      value: "dev-gcp:meldekort:meldekort-api-q2"
+    - name: MELDEKORT_API_URL
+      value: "http://meldekort-api-q2.meldekort/meldekort/meldekort-api/api/person/meldekortstatus"
+    - name: MELDEKORTREGISTER_AUDIENCE
+      value: "dev-gcp:teamdagpenger:dp-meldekortregister"
+    - name: MELDEKORTREGISTER_URL
+      value: "http://dp-meldekortregister.teamdagpenger/meldekortstatus"
+    - name: MELDEKORT_URL
+      value: "https://meldekort-frontend-q2.intern.dev.nav.no/meldekort"
+    - name: ETTERREGISTRERING_MELDEKORT_URL
+      value: "https://www.dev.nav.no/meldekort/etterregistrer-meldekort"

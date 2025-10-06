@@ -3,4 +3,20 @@
 .microfrontend {
   border: gray dashed;
   padding: 2rem;
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 0px) {
+  .microfrontend {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+  }
+}
+
+@media (min-width: 648px) {
+  .microfrontend {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+  }
 }
