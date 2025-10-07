@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   border-radius: var(--a-border-radius-large);
-  background-color: var(--a-surface-default);
+  background-color: var(--a-surface-default) !important;
   box-shadow: var(--a-shadow-xsmall);
   width: 100%;
   color: #272727 !important;
