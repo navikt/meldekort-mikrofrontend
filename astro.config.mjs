@@ -23,23 +23,7 @@ export default defineConfig({
       },
     },
   },
-  integrations: [
-    react(),
-    {
-      name: "importmap",
-      hooks: {
-        "astro:build:setup": ({ vite, target }) => {
-          if (target === "client") {
-            vite.plugins.push({
-              ...rollupImportMapPlugin(importmap),
-              enforce: "pre",
-              apply: "build",
-            });
-          }
-        },
-      },
-    },
-  ],
+  integrations: [react()],
   i18n: {
     defaultLocale: "nb",
     locales: ["nb", "nn", "en"],
