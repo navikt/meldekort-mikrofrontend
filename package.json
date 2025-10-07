@@ -17,7 +17,7 @@
     "@astrojs/react": "4.4.0",
     "@navikt/aksel-icons": "7.31.0",
     "@navikt/ds-css": "7.31.0",
-    "@navikt/ds-react": "7.31.0",
+    "@navikt/ds-react": "7.32.0",
     "@navikt/nav-dekoratoren-moduler": "3.4.0",
     "@navikt/oasis": "3.8.0",
     "@opentelemetry/sdk-node": "0.205.0",
