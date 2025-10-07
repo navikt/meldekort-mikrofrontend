@@ -64,19 +64,18 @@ jobs:
           RESOURCE: nais/dev-gcp/nais.yaml
           VAR: image=${{ needs.build.outputs.image }},version=${{ github.sha }}
 
-  # deploy-prod:
-  #   if: github.ref == "refs/heads/main"
-  #   runs-on: "ubuntu-latest"
-  #   permissions:
-  #     contents: "read"
-  #     id-token: "write"
-  #   needs: [build]
-
-  #   steps:
-  #     - uses: "actions/checkout@v5"
-  #     - name: "Deploy to prod"
-  #       uses: "nais/deploy/actions/deploy@v2"
-  #       env:
-  #         CLUSTER: prod-gcp
-  #         RESOURCE: nais/prod-gcp/nais.yaml
-  #         VAR: image=${{ needs.build.outputs.image }},version=${{ github.sha }}          
+  deploy-prod:
+    if: github.ref == 'refs/heads/main'
+    runs-on: "ubuntu-latest"
+    permissions:
+      contents: "read"
+      id-token: "write"
+    needs: [build]
+    steps:
+      - uses: "actions/checkout@v5"
+      - name: "Deploy to prod"
+        uses: "nais/deploy/actions/deploy@v2"
+        env:
+          CLUSTER: prod-gcp
+          RESOURCE: nais/prod-gcp/nais.yaml
+          VAR: image=${{ needs.build.outputs.image }},version=${{ github.sha }}
