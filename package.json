@@ -33,7 +33,7 @@
     "@hono/node-server": "1.19.5",
     "@types/node": "20.19.19",
     "@types/react": "19.2.0",
-    "@types/react-dom": "19.2.0",
+    "@types/react-dom": "19.2.1",
     "esbuild": "0.25.10",
     "hono": "4.9.10",
     "husky": "9.1.7",
