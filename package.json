@@ -35,7 +35,7 @@
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.1",
     "esbuild": "0.25.10",
-    "hono": "4.9.10",
+    "hono": "4.9.11",
     "husky": "9.1.7",
     "lint-staged": "16.2.3",
     "postcss": "8.5.6",
