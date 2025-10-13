@@ -35,9 +35,3 @@ const language = Astro.currentLocale as Language;
     {isReadyForInnsending ? <MeldekortReady language={language} meldekort={meldekortData}/> : null}
   </div>
 </section>
-<script>
-  import { logEvent } from "@src/utils/analytics";
-
-  const microfrontend = document.querySelector("#link");
-  microfrontend?.addEventListener("click", () => logEvent("Lenke"));
-</script>
