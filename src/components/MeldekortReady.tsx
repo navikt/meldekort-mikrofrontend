@@ -34,7 +34,7 @@ const createReadyForInnsendingText = (language: Language, meldekort: MeldekortDa
     } else {
       return text.sendInnFlereMeldekort[language].replace(
         "{count}",
-        meldekort.nyeMeldekort?.antallNyeMeldekort.toString(),
+        meldekort.nyeMeldekort?.antallNyeMeldekort.toString() || "0",
       );
     }
   } else {
