@@ -12,7 +12,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@astrojs/check": "0.9.4",
+    "@astrojs/check": "0.9.5",
     "@astrojs/node": "9.5.0",
     "@astrojs/react": "4.4.0",
     "@navikt/aksel-icons": "7.32.3",
