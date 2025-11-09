@@ -33,7 +33,7 @@
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
     "astro": "5.15.3",
-    "esbuild": "0.25.12",
+    "esbuild": "0.26.0",
     "hono": "4.10.4",
     "husky": "9.1.7",
     "lint-staged": "16.2.6",
