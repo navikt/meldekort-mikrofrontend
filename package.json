@@ -23,8 +23,8 @@
     "@opentelemetry/sdk-node": "0.208.0",
     "dayjs": "1.11.19",
     "pino": "10.1.0",
-    "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react": "19.2.1",
+    "react-dom": "19.2.1"
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.8",
@@ -32,14 +32,14 @@
     "@types/node": "24.10.1",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
-    "astro": "5.16.3",
-    "esbuild": "0.27.0",
+    "astro": "5.16.4",
+    "esbuild": "0.27.1",
     "hono": "4.10.7",
     "husky": "9.1.7",
     "lint-staged": "16.2.7",
     "postcss": "8.5.6",
     "postcss-prefix-selector": "2.1.1",
-    "prettier": "3.7.3",
+    "prettier": "3.7.4",
     "tsx": "4.21.0",
     "typescript": "5.9.3"
   },
