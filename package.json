@@ -43,6 +43,11 @@
     "tsx": "4.21.0",
     "typescript": "5.9.3"
   },
+  "overrides": {
+    "astro": {
+      "esbuild": "0.27.1"
+    }
+  },
   "lint-staged": {
     "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": ["biome check --write --no-errors-on-unmatched"]
   }

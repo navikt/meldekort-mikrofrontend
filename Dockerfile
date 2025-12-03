@@ -30,10 +30,7 @@ COPY package.json ./
 COPY package-lock.json ./
 
 RUN npm ci --ignore-scripts --omit=dev
-# esbuild should be in devDependencies but it seems that some of subdependencies have it in prod dependencies
-# Let's delete it
-RUN rm -rf node_modules/esbuild
-RUN rm -rf node_modules/@esbuild
+
 
 # runtime
 FROM gcr.io/distroless/nodejs24-debian12 AS runtime
