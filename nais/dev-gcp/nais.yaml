@@ -48,3 +48,5 @@ spec:
       value: "https://meldekort-frontend-q2.intern.dev.nav.no/meldekort"
     - name: ETTERREGISTRERING_MELDEKORT_URL
       value: "https://www.dev.nav.no/meldekort/etterregistrer-meldekort"
+    - name: DAGPENGER_MELDEKORT_URL
+      value: "https://arbeid.intern.dev.nav.no/arbeid/dagpenger/meldekort"
