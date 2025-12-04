@@ -48,3 +48,5 @@ spec:
       value: "https://www.nav.no/meldekort"
     - name: ETTERREGISTRERING_MELDEKORT_URL
       value: "https://www.nav.no/meldekort/etterregistrer-meldekort"
+    - name: DAGPENGER_MELDEKORT_URL
+      value: "https://www.nav.no/arbeid/dagpenger/meldekort"

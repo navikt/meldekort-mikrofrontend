@@ -45,6 +45,11 @@ export default defineConfig({
         access: "secret",
         default: "http://localhost:8080/etterregistrer-meldekort",
       }),
+      DAGPENGER_MELDEKORT_URL: envField.string({
+        context: "server",
+        access: "secret",
+        default: "http://localhost:8080/dagpenger-meldekort",
+      }),
       MELDEKORT_API_AUDIENCE: envField.string({
         context: "server",
         access: "secret",
