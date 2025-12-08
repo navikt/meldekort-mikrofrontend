@@ -4,6 +4,11 @@ export const text = {
     en: "Employment status form",
     nn: "Meldekort",
   },
+  tittelDagpenger: {
+    nb: "Meldekort for dagpenger",
+    en: "Unemployment benefits employment status form",
+    nn: "Meldekort for dagpengar",
+  },
   sendInnEttMeldekort: {
     nb: "Send inn meldekort",
     en: "Submit employment status form",
