@@ -17,7 +17,9 @@ const MeldekortEtterregistrering = ({ language, meldekort, dagpenger }: Props) =
 
     return (
       <LinkCard language={language} warning={true} href={url} dagpenger={dagpenger}>
-        <BodyLong>{text.etterregistreringer[language]}</BodyLong>
+        <BodyLong>
+          {dagpenger ? text.etterregistreringerDagpenger[language] : text.etterregistreringer[language]}
+        </BodyLong>
         <Alert inline variant="warning" size="small">
           {text.etterregistrering[language].replace("{count}", meldekort.etterregistrerteMeldekort.toString())}
         </Alert>
