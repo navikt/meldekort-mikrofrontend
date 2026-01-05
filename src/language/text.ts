@@ -1,8 +1,8 @@
 export const text = {
   tittel: {
-    nb: "Meldekort",
-    en: "Employment status form",
-    nn: "Meldekort",
+    nb: "Andre meldekort",
+    en: "Other employment status forms",
+    nn: "Andre meldekort",
   },
   tittelDagpenger: {
     nb: "Meldekort for dagpenger",
@@ -40,9 +40,14 @@ export const text = {
     nn: "Neste meldekort kan sendast frå {dato} ",
   },
   etterregistreringer: {
-    nb: "Du har fått vedtak for en periode du ikke har sendt meldekort.",
-    en: "You have received a decision for a period in which you have not sent employment status form.",
-    nn: "Du har fått vedtak for ein periode du ikkje har sendt meldekort.",
+    nb: "Du har ikke sendt meldekort",
+    en: "You have not sent employment status form",
+    nn: "Du har ikkje sendt meldekort",
+  },
+  etterregistreringerDagpenger: {
+    nb: "Du har ikke sendt meldekort for dagpenger",
+    en: "You have not sent unemployment benefits employment status form",
+    nn: "Du har ikkje sendt meldekort for dagpenger",
   },
   infoOmTrekk: {
     nb: "Siste frist før trekk: {dato}",
