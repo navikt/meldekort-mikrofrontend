@@ -4,9 +4,9 @@ Mikrofrontend som vises på Min Side.
 
 # Kjøre appen lokalt
 
-1. Installer dependencies: `npm i`
-2. Start hono mockserver: `npm run mock`
-3. Med mockserver kjørende i egen terminal, start appen: `npm run dev`
+1. Installer dependencies: `pnpm install`
+2. Start hono mockserver: `pnpm run mock`
+3. Med mockserver kjørende i egen terminal, start appen: `pnpm run dev`
 4. Appen nås på http://localhost:4321/
 
 # Henvendelser

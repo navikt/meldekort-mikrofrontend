@@ -1,7 +1,8 @@
 FROM node:24-alpine AS base
+RUN corepack enable
 RUN --mount=type=secret,id=NODE_AUTH_TOKEN \
-    npm config set //npm.pkg.github.com/:_authToken=$(cat /run/secrets/NODE_AUTH_TOKEN)
-RUN npm config set @navikt:registry=https://npm.pkg.github.com
+    pnpm config set //npm.pkg.github.com/:_authToken=$(cat /run/secrets/NODE_AUTH_TOKEN)
+RUN pnpm config set @navikt:registry=https://npm.pkg.github.com
 
 WORKDIR /usr/src/app
 
@@ -11,11 +12,11 @@ FROM base AS build
 COPY ./src ./src
 COPY astro.config.mjs ./
 COPY package.json ./
-COPY package-lock.json ./
+COPY pnpm-lock.yaml ./
 COPY tsconfig.json ./
 
-RUN npm ci --ignore-scripts
-RUN npm run build
+RUN pnpm install --ignore-scripts --frozen-lockfile
+RUN pnpm run build
 
 
 # export build to filesystem (GitHub)
@@ -27,10 +28,12 @@ COPY --from=build /usr/src/app/dist ./dist
 FROM base AS prod-deps
 
 COPY package.json ./
-COPY package-lock.json ./
+COPY pnpm-lock.yaml ./
 
-RUN npm ci --ignore-scripts --omit=dev
-
+RUN pnpm install --ignore-scripts --frozen-lockfile --prod
+# esbuild should be in devDependencies but it seems that some of subdependencies have it in prod dependencies
+# Let's delete it
+RUN rm -rf node_modules/.pnpm/@esbuild*
 
 # runtime
 FROM gcr.io/distroless/nodejs24-debian12 AS runtime
