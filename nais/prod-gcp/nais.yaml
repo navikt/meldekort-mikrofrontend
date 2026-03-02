@@ -16,6 +16,11 @@ spec:
   readiness:
     path: /api/internal/isReady
     initialDelay: 10
+  observability:
+    logging:
+      destinations:
+        - id: loki
+        - id: elastic
   replicas:
     min: 2
     max: 4
@@ -26,6 +31,8 @@ spec:
           namespace: min-side
     outbound:
       rules:
+        - application: logging
+          namespace: nais-system
         - application: meldekort-api
         - application: dp-meldekortregister
           namespace: teamdagpenger
