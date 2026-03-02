@@ -1,8 +1,7 @@
-import { logs, NodeSDK, tracing } from "@opentelemetry/sdk-node";
+import { logs, NodeSDK } from "@opentelemetry/sdk-node";
 import pino from "pino";
 
 const sdk = new NodeSDK({
-  spanProcessors: [new tracing.SimpleSpanProcessor(new tracing.ConsoleSpanExporter())],
   logRecordProcessors: [new logs.SimpleLogRecordProcessor(new logs.ConsoleLogRecordExporter())],
 });
 

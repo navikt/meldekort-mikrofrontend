@@ -58,7 +58,7 @@ const hentMeldekortstatus = async (oboToken: string, audience: string, url: stri
     });
 
     if (!dataResponse.ok && dataResponse.status !== 404) {
-      logger.error(`dataResponse·fra·${url}·feilet·med·status·${dataResponse.status}`);
+      logger.error(`dataResponse fra ${url} feilet med status ${dataResponse.status}`);
       return meldekortstatus;
     }
 
@@ -69,7 +69,7 @@ const hentMeldekortstatus = async (oboToken: string, audience: string, url: stri
       return meldekortstatus;
     }
   } catch (e) {
-    logger.error(`Feil·ved·henting·av·data·fra·${url}: ${e}`);
+    logger.error(`Feil ved henting av data fra ${url}: ${e}`);
   }
 
   return meldekortstatus;
