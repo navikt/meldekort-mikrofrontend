@@ -2,11 +2,12 @@
   "antallGjenstaaendeFeriedager": 0,
   "etterregistrerteMeldekort": 2,
   "meldekort": 0,
-  "nesteInnsendingAvMeldekort": "2019-09-30",
+  "nesteInnsendingAvMeldekort": "2024-09-30",
   "nesteMeldekort": {
-    "fra": "2019-09-09",
-    "kanSendesFra": "2019-09-21",
+    "fra": "2024-09-09",
     "til": "2024-09-22",
+    "kanSendesFra": "2024-09-21",
+    "sisteFristForTrekk": "2024-09-30",
     "uke": "37-38"
   }
 }

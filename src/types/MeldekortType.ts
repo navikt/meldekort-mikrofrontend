@@ -22,8 +22,9 @@ export interface MeldekortData {
 
 interface NesteMeldekortFraApi {
   fra: string;
-  kanSendesFra: string;
   til: string;
+  kanSendesFra: string;
+  sisteFristForTrekk: string;
   uke: string;
 }
 

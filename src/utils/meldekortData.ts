@@ -76,17 +76,15 @@ const hentMeldekortstatus = async (oboToken: string, audience: string, url: stri
 };
 
 export const prosesserMeldekortDataFraApi = (meldekort: MeldekortDataFraApi) => {
-  logger.info(meldekort);
   const isMeldekortBruker = erMeldekortbruker(meldekort);
-  const { sisteDatoForTrekk, risikerTrekk } = beregnSisteDatoForTrekk(meldekort.nesteMeldekort?.til);
 
   let nesteMeldekort = null;
   if (meldekort.nesteMeldekort) {
     nesteMeldekort = {
       fra: meldekort.nesteMeldekort.fra,
       kanSendesFra: meldekort.nesteMeldekort.kanSendesFra,
-      risikererTrekk: risikerTrekk,
-      sisteDatoForTrekk: sisteDatoForTrekk,
+      risikererTrekk: dayjs().isAfter(meldekort.nesteMeldekort.sisteFristForTrekk),
+      sisteDatoForTrekk: meldekort.nesteMeldekort.sisteFristForTrekk,
       til: meldekort.nesteMeldekort.til,
       uke: meldekort.nesteMeldekort.uke,
     };
@@ -122,14 +120,4 @@ const erMeldekortbruker = (meldekort: MeldekortDataFraApi) => {
     meldekort.etterregistrerteMeldekort > 0 ||
     meldekort.meldekort > 0
   );
-};
-
-const beregnSisteDatoForTrekk = (til?: string) => {
-  const sisteDatoForTrekk = dayjs(til).add(8, "day");
-  const risikerTrekk = dayjs().isAfter(sisteDatoForTrekk);
-
-  return {
-    sisteDatoForTrekk: sisteDatoForTrekk.format("YYYY-MM-DD"),
-    risikerTrekk,
-  };
 };
