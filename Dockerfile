@@ -36,7 +36,7 @@ RUN pnpm install --ignore-scripts --frozen-lockfile --prod
 RUN rm -rf node_modules/.pnpm/@esbuild*
 
 # runtime
-FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:24@sha256:0d719fe8ebc82912466ae917f95f9763a0023e93b3048a377b8a6fdb3e8b8fad AS runtime
+FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:24@sha256:bd52f182c9f973b6419ca10060671a509519dd66ea5601fa0f0c709acef15725 AS runtime
 COPY --from=prod-deps /usr/src/app/node_modules ./node_modules
 COPY --from=build /usr/src/app/dist ./dist
 
