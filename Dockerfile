@@ -1,7 +1,5 @@
 FROM node:24-alpine AS base
 RUN corepack enable
-RUN --mount=type=secret,id=NODE_AUTH_TOKEN \
-    pnpm config set //npm.pkg.github.com/:_authToken=$(cat /run/secrets/NODE_AUTH_TOKEN)
 RUN pnpm config set @navikt:registry=https://npm.pkg.github.com
 
 WORKDIR /usr/src/app
@@ -15,7 +13,10 @@ COPY package.json ./
 COPY pnpm-lock.yaml ./
 COPY tsconfig.json ./
 
-RUN pnpm install --ignore-scripts --frozen-lockfile
+RUN --mount=type=secret,id=NODE_AUTH_TOKEN \
+    pnpm config set //npm.pkg.github.com/:_authToken=$(cat /run/secrets/NODE_AUTH_TOKEN) && \
+    pnpm install --ignore-scripts --frozen-lockfile && \
+    pnpm config delete //npm.pkg.github.com/:_authToken
 RUN pnpm run build
 
 
@@ -30,7 +31,10 @@ FROM base AS prod-deps
 COPY package.json ./
 COPY pnpm-lock.yaml ./
 
-RUN pnpm install --ignore-scripts --frozen-lockfile --prod
+RUN --mount=type=secret,id=NODE_AUTH_TOKEN \
+    pnpm config set //npm.pkg.github.com/:_authToken=$(cat /run/secrets/NODE_AUTH_TOKEN) && \
+    pnpm install --ignore-scripts --frozen-lockfile --prod && \
+    pnpm config delete //npm.pkg.github.com/:_authToken
 # esbuild should be in devDependencies but it seems that some of subdependencies have it in prod dependencies
 # Let's delete it
 RUN rm -rf node_modules/.pnpm/@esbuild*
