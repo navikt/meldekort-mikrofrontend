@@ -28,16 +28,16 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.6",
+    "@biomejs/biome": "2.4.7",
     "@hono/node-server": "1.19.11",
-    "@types/node": "25.4.0",
+    "@types/node": "25.5.0",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "astro": "5.18.1",
-    "esbuild": "0.27.3",
-    "hono": "4.12.7",
+    "esbuild": "0.27.4",
+    "hono": "4.12.8",
     "husky": "9.1.7",
-    "lint-staged": "16.3.3",
+    "lint-staged": "16.4.0",
     "postcss": "8.5.8",
     "postcss-prefix-selector": "2.1.1",
     "prettier": "3.8.1",
@@ -46,7 +46,7 @@
   },
   "overrides": {
     "astro": {
-      "esbuild": "0.27.3"
+      "esbuild": "0.27.4"
     }
   },
   "lint-staged": {
