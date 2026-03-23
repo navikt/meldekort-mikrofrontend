@@ -13,12 +13,12 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@astrojs/check": "0.9.7",
-    "@astrojs/node": "10.0.1",
-    "@astrojs/react": "5.0.0",
-    "@navikt/aksel-icons": "8.7.0",
-    "@navikt/ds-css": "8.7.0",
-    "@navikt/ds-react": "8.7.0",
+    "@astrojs/check": "0.9.8",
+    "@astrojs/node": "10.0.3",
+    "@astrojs/react": "5.0.1",
+    "@navikt/aksel-icons": "8.8.0",
+    "@navikt/ds-css": "8.8.0",
+    "@navikt/ds-react": "8.8.0",
     "@navikt/nav-dekoratoren-moduler": "3.6.3",
     "@navikt/oasis": "4.1.4",
     "@opentelemetry/sdk-node": "0.213.0",
@@ -28,12 +28,12 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.7",
+    "@biomejs/biome": "2.4.8",
     "@hono/node-server": "1.19.11",
     "@types/node": "25.5.0",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "astro": "6.0.4",
+    "astro": "6.0.8",
     "esbuild": "0.27.4",
     "hono": "4.12.8",
     "husky": "9.1.7",
