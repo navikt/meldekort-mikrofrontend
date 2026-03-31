@@ -7,27 +7,28 @@ import styles from "@src/styles/index.module.css";
 import { logger } from "@src/utils/logger";
 import "@src/styles/aksel.css";
 import { isLocal } from "../../utils/environment";
-import { hentMeldekortDataFraApi, prosesserMeldekortDataFraApi } from "@src/utils/meldekortData.ts";
+import { hentMeldekortstatus, prosesserMeldekortDataFraApi } from "@src/utils/meldekortData.ts";
 import {
   MELDEKORT_API_AUDIENCE,
   MELDEKORT_API_URL,
   MELDEKORTREGISTER_AUDIENCE,
   MELDEKORTREGISTER_URL
 } from "astro:env/server";
+import type { MeldekortStatus } from "@src/types/MeldekortType.ts";
 
-let meldekortDataFraArena;
-let meldekortDataFraDp;
+let meldekortStatusFraArena: MeldekortStatus;
+let meldekortStatusFraDp: MeldekortStatus;
 
 try {
-  meldekortDataFraArena = await hentMeldekortDataFraApi(Astro.locals.token, MELDEKORT_API_AUDIENCE || "", MELDEKORT_API_URL || "");
-  meldekortDataFraDp = await hentMeldekortDataFraApi(Astro.locals.token, MELDEKORTREGISTER_AUDIENCE || "", MELDEKORTREGISTER_URL || "");
+  meldekortStatusFraArena = await hentMeldekortstatus(Astro.locals.token, MELDEKORT_API_AUDIENCE || "", MELDEKORT_API_URL || "");
+  meldekortStatusFraDp = await hentMeldekortstatus(Astro.locals.token, MELDEKORTREGISTER_AUDIENCE || "", MELDEKORTREGISTER_URL || "");
 } catch (error) {
   logger.error("Error fetching meldekortdata: " + error);
   return new Response("Internal Server Error", { status: 503 });
 }
 
-const arenaData = prosesserMeldekortDataFraApi(meldekortDataFraArena);
-const dpData = prosesserMeldekortDataFraApi(meldekortDataFraDp);
+const arenaData = prosesserMeldekortDataFraApi(meldekortStatusFraArena);
+const dpData = prosesserMeldekortDataFraApi(meldekortStatusFraDp);
 const language = Astro.currentLocale as Language;
 ---
 
@@ -35,11 +36,11 @@ const language = Astro.currentLocale as Language;
 <meta charset="UTF-8"/>}
 <section class="meldekort-mikrofrontend">
   <div class={styles.microfrontend}>
-    <MeldekortEtterregistrering language={language} meldekort={arenaData.meldekortData} dagpenger={false}/>
-    {arenaData.isPendingForInnsending ? <MeldekortPending language={language} meldekort={arenaData.meldekortData} dagpenger={false}/> : null}
-    {arenaData.isReadyForInnsending ? <MeldekortReady language={language} meldekort={arenaData.meldekortData} dagpenger={false}/> : null}
-    <MeldekortEtterregistrering language={language} meldekort={dpData.meldekortData} dagpenger={true}/>
-    {dpData.isPendingForInnsending ? <MeldekortPending language={language} meldekort={dpData.meldekortData} dagpenger={true}/> : null}
-    {dpData.isReadyForInnsending ? <MeldekortReady language={language} meldekort={dpData.meldekortData} dagpenger={true}/> : null}
+    <MeldekortEtterregistrering language={language} meldekortStatus={meldekortStatusFraArena} dagpenger={false}/>
+    {arenaData.isPendingForInnsending ? <MeldekortPending language={language} nesteMeldekort={arenaData.nesteMeldekort} dagpenger={false}/> : null}
+    {arenaData.isReadyForInnsending ? <MeldekortReady language={language} meldekortStatus={meldekortStatusFraArena} dagpenger={false}/> : null}
+    <MeldekortEtterregistrering language={language} meldekortStatus={meldekortStatusFraDp} dagpenger={true}/>
+    {dpData.isPendingForInnsending ? <MeldekortPending language={language} nesteMeldekort={dpData.nesteMeldekort} dagpenger={true}/> : null}
+    {dpData.isReadyForInnsending ? <MeldekortReady language={language} meldekortStatus={meldekortStatusFraDp} dagpenger={true}/> : null}
   </div>
 </section>

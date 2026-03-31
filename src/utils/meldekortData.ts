@@ -1,38 +1,16 @@
 import { requestTokenxOboToken } from "@navikt/oasis";
-import type { MeldekortData, MeldekortDataFraApi } from "@src/types/MeldekortType.ts";
+import type { MeldekortData, MeldekortStatus, MeldekortTilUtfylling } from "@src/types/MeldekortType.ts";
 import { isLocal } from "@src/utils/environment.ts";
 import { logger } from "@src/utils/logger.ts";
 import dayjs from "dayjs";
 
-export const hentMeldekortDataFraApi = async (
-  oboToken: string,
-  audience: string,
-  url: string,
-): Promise<MeldekortDataFraApi> => {
-  logger.info("Henter meldekortdata fra API");
-
-  const meldekortData = await hentMeldekortstatus(oboToken, audience, url);
-
-  return {
-    antallGjenstaaendeFeriedager: meldekortData ? meldekortData.antallGjenstaaendeFeriedager : 0,
-    etterregistrerteMeldekort: meldekortData ? meldekortData.etterregistrerteMeldekort : 0,
-    meldekort: meldekortData ? meldekortData.meldekort : 0,
-    nesteInnsendingAvMeldekort: meldekortData?.nesteInnsendingAvMeldekort
-      ? meldekortData.nesteInnsendingAvMeldekort
-      : null,
-    nesteMeldekort: meldekortData?.nesteMeldekort ? meldekortData.nesteMeldekort : null,
-  } as MeldekortDataFraApi;
-};
-
-const hentMeldekortstatus = async (oboToken: string, audience: string, url: string) => {
+export const hentMeldekortstatus = async (oboToken: string, audience: string, url: string) => {
   logger.info(`Henter meldekortstatus fra ${url}`);
 
-  let meldekortstatus = {
-    antallGjenstaaendeFeriedager: 0,
-    etterregistrerteMeldekort: 0,
-    meldekort: 0,
-    nesteInnsendingAvMeldekort: null,
-    nesteMeldekort: null,
+  let meldekortstatus: MeldekortStatus = {
+    harInnsendteMeldekort: false,
+    meldekortTilUtfylling: [],
+    redirectUrl: "",
   };
 
   try {
@@ -75,49 +53,24 @@ const hentMeldekortstatus = async (oboToken: string, audience: string, url: stri
   return meldekortstatus;
 };
 
-export const prosesserMeldekortDataFraApi = (meldekort: MeldekortDataFraApi) => {
-  const isMeldekortBruker = erMeldekortbruker(meldekort);
+export const prosesserMeldekortDataFraApi = (meldekortStatus: MeldekortStatus): MeldekortData => {
+  const erMeldekortbruker =
+    meldekortStatus.harInnsendteMeldekort ||
+    meldekortStatus.meldekortTilUtfylling.length > 0 ||
+    meldekortStatus.redirectUrl !== "";
 
-  let nesteMeldekort = null;
-  if (meldekort.nesteMeldekort) {
-    nesteMeldekort = {
-      fra: meldekort.nesteMeldekort.fra,
-      kanSendesFra: meldekort.nesteMeldekort.kanSendesFra,
-      risikererTrekk: dayjs().isAfter(meldekort.nesteMeldekort.sisteFristForTrekk),
-      sisteDatoForTrekk: meldekort.nesteMeldekort.sisteFristForTrekk,
-      til: meldekort.nesteMeldekort.til,
-      uke: meldekort.nesteMeldekort.uke,
-    };
+  let nesteMeldekort: MeldekortTilUtfylling | null = null;
+  let nesteMeldekortKanSendesFra: dayjs.Dayjs | null = null;
+
+  if (meldekortStatus.meldekortTilUtfylling.length > 0) {
+    nesteMeldekort = meldekortStatus.meldekortTilUtfylling[0];
+    nesteMeldekortKanSendesFra = dayjs(nesteMeldekort.kanSendesFra);
   }
 
-  const nyeMeldekort = {
-    antallNyeMeldekort: meldekort.meldekort,
-    nesteInnsendingAvMeldekort: meldekort.nesteInnsendingAvMeldekort,
-    nesteMeldekort: nesteMeldekort,
-  };
-
-  const meldekortData: MeldekortData = {
-    etterregistrerteMeldekort: meldekort.etterregistrerteMeldekort,
-    meldekortbruker: isMeldekortBruker,
-    nyeMeldekort,
-    resterendeFeriedager: meldekort.antallGjenstaaendeFeriedager,
-  };
-
-  const isPendingForInnsending = isMeldekortBruker && meldekortData.nyeMeldekort?.nesteInnsendingAvMeldekort != null;
+  const isPendingForInnsending =
+    erMeldekortbruker && nesteMeldekortKanSendesFra != null && nesteMeldekortKanSendesFra > dayjs();
   const isReadyForInnsending =
-    isMeldekortBruker &&
-    meldekortData.nyeMeldekort?.antallNyeMeldekort !== undefined &&
-    meldekortData.nyeMeldekort.antallNyeMeldekort > 0;
+    erMeldekortbruker && nesteMeldekortKanSendesFra != null && nesteMeldekortKanSendesFra <= dayjs();
 
-  return { isPendingForInnsending, isReadyForInnsending, meldekortData };
-};
-
-const erMeldekortbruker = (meldekort: MeldekortDataFraApi) => {
-  return (
-    meldekort.nesteMeldekort != null ||
-    meldekort.nesteInnsendingAvMeldekort != null ||
-    meldekort.antallGjenstaaendeFeriedager > 0 ||
-    meldekort.etterregistrerteMeldekort > 0 ||
-    meldekort.meldekort > 0
-  );
+  return { isPendingForInnsending, isReadyForInnsending, nesteMeldekort };
 };

@@ -3,16 +3,20 @@ import { Alert, BodyLong } from "@navikt/ds-react";
 import LinkCard from "@src/components/linkCard/LinkCard.tsx";
 import { text } from "@src/language/text.ts";
 import type { Language } from "@src/language/types.ts";
-import type { MeldekortData } from "@src/types/MeldekortType.ts";
+import type { MeldekortStatus } from "@src/types/MeldekortType.ts";
 
 interface Props {
   language: Language;
-  meldekort: MeldekortData;
+  meldekortStatus: MeldekortStatus;
   dagpenger: boolean;
 }
 
-const MeldekortEtterregistrering = ({ language, meldekort, dagpenger }: Props) => {
-  if (meldekort.etterregistrerteMeldekort > 0) {
+const MeldekortEtterregistrering = ({ language, meldekortStatus, dagpenger }: Props) => {
+  const antallEtterregistrerteMeldekort = meldekortStatus.meldekortTilUtfylling.filter(
+    (meldekort) => meldekort.etterregistrering,
+  ).length;
+
+  if (antallEtterregistrerteMeldekort > 0) {
     const url = dagpenger ? DAGPENGER_MELDEKORT_URL : ETTERREGISTRERING_MELDEKORT_URL;
 
     return (
@@ -21,7 +25,7 @@ const MeldekortEtterregistrering = ({ language, meldekort, dagpenger }: Props) =
           {dagpenger ? text.etterregistreringerDagpenger[language] : text.etterregistreringer[language]}
         </BodyLong>
         <Alert inline variant="warning" size="small">
-          {text.etterregistrering[language].replace("{count}", meldekort.etterregistrerteMeldekort.toString())}
+          {text.etterregistrering[language].replace("{count}", antallEtterregistrerteMeldekort.toString())}
         </Alert>
       </LinkCard>
     );

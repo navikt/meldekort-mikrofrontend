@@ -1,13 +1,15 @@
 {
-  "antallGjenstaaendeFeriedager": 0,
-  "etterregistrerteMeldekort": 2,
-  "meldekort": 0,
-  "nesteInnsendingAvMeldekort": "2024-09-30",
-  "nesteMeldekort": {
-    "fra": "2024-09-09",
-    "til": "2024-09-22",
-    "kanSendesFra": "2024-09-21",
-    "sisteFristForTrekk": "2024-09-30",
-    "uke": "37-38"
-  }
+  "harInnsendteMeldekort": true,
+  "meldekortTilUtfylling": [
+    {
+      "fraOgMed": "2026-03-02",
+      "tilOgMed": "2026-03-15",
+      "uke": "10-11",
+      "kanSendesFra": "2023-03-01T00:00",
+      "kanFyllesUtFra": "2026-03-01T00:00",
+      "fristForInnsending": "2026-03-23T23:59",
+      "etterregistrering": true
+    }
+  ],
+  "redirectUrl": "string"
 }
