@@ -2,6 +2,8 @@ export interface MeldekortData {
   isPendingForInnsending: boolean;
   isReadyForInnsending: boolean;
   nesteMeldekort: MeldekortTilUtfylling | null;
+  ordinareMeldekort: MeldekortTilUtfylling[];
+  etterregistrerteMeldekort: MeldekortTilUtfylling[];
 }
 
 export interface MeldekortStatus {
