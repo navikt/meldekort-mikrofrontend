@@ -36,11 +36,11 @@ const language = Astro.currentLocale as Language;
 <meta charset="UTF-8"/>}
 <section class="meldekort-mikrofrontend">
   <div class={styles.microfrontend}>
-    <MeldekortEtterregistrering language={language} meldekortStatus={meldekortStatusFraArena} dagpenger={false}/>
-    {arenaData.isPendingForInnsending ? <MeldekortPending language={language} nesteMeldekort={arenaData.nesteMeldekort} dagpenger={false}/> : null}
-    {arenaData.isReadyForInnsending ? <MeldekortReady language={language} meldekortStatus={meldekortStatusFraArena} dagpenger={false}/> : null}
-    <MeldekortEtterregistrering language={language} meldekortStatus={meldekortStatusFraDp} dagpenger={true}/>
-    {dpData.isPendingForInnsending ? <MeldekortPending language={language} nesteMeldekort={dpData.nesteMeldekort} dagpenger={true}/> : null}
-    {dpData.isReadyForInnsending ? <MeldekortReady language={language} meldekortStatus={meldekortStatusFraDp} dagpenger={true}/> : null}
+    <MeldekortEtterregistrering language={language} meldekortData={arenaData} dagpenger={false}/>
+    {arenaData.isPendingForInnsending ? <MeldekortPending language={language} meldekortData={arenaData} dagpenger={false}/> : null}
+    {arenaData.isReadyForInnsending ? <MeldekortReady language={language} meldekortData={arenaData} dagpenger={false}/> : null}
+    <MeldekortEtterregistrering language={language} meldekortData={dpData} dagpenger={true}/>
+    {dpData.isPendingForInnsending ? <MeldekortPending language={language} meldekortData={dpData} dagpenger={true}/> : null}
+    {dpData.isReadyForInnsending ? <MeldekortReady language={language} meldekortData={dpData} dagpenger={true}/> : null}
   </div>
 </section>

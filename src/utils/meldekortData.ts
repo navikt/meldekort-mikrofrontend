@@ -62,15 +62,27 @@ export const prosesserMeldekortDataFraApi = (meldekortStatus: MeldekortStatus): 
   let nesteMeldekort: MeldekortTilUtfylling | null = null;
   let nesteMeldekortKanSendesFra: dayjs.Dayjs | null = null;
 
-  if (meldekortStatus.meldekortTilUtfylling.length > 0) {
-    nesteMeldekort = meldekortStatus.meldekortTilUtfylling[0];
+  const ordinareMeldekort: MeldekortTilUtfylling[] = [];
+  const etterregistrerteMeldekort: MeldekortTilUtfylling[] = [];
+
+  for (const meldekort of meldekortStatus.meldekortTilUtfylling) {
+    if (meldekort.etterregistrering) {
+      etterregistrerteMeldekort.push(meldekort);
+    } else {
+      ordinareMeldekort.push(meldekort);
+    }
+  }
+
+  if (ordinareMeldekort.length > 0) {
+    nesteMeldekort = ordinareMeldekort[0];
     nesteMeldekortKanSendesFra = dayjs(nesteMeldekort.kanSendesFra);
   }
 
+  const now = dayjs();
   const isPendingForInnsending =
-    erMeldekortbruker && nesteMeldekortKanSendesFra != null && nesteMeldekortKanSendesFra > dayjs();
+    erMeldekortbruker && nesteMeldekortKanSendesFra != null && nesteMeldekortKanSendesFra > now;
   const isReadyForInnsending =
-    erMeldekortbruker && nesteMeldekortKanSendesFra != null && nesteMeldekortKanSendesFra <= dayjs();
+    erMeldekortbruker && nesteMeldekortKanSendesFra != null && nesteMeldekortKanSendesFra <= now;
 
-  return { isPendingForInnsending, isReadyForInnsending, nesteMeldekort };
+  return { isPendingForInnsending, isReadyForInnsending, nesteMeldekort, ordinareMeldekort, etterregistrerteMeldekort };
 };

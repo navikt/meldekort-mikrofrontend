@@ -3,18 +3,16 @@ import { Alert, BodyLong } from "@navikt/ds-react";
 import LinkCard from "@src/components/linkCard/LinkCard.tsx";
 import { text } from "@src/language/text.ts";
 import type { Language } from "@src/language/types.ts";
-import type { MeldekortStatus } from "@src/types/MeldekortType.ts";
+import type { MeldekortData } from "@src/types/MeldekortType.ts";
 
 interface Props {
   language: Language;
-  meldekortStatus: MeldekortStatus;
+  meldekortData: MeldekortData;
   dagpenger: boolean;
 }
 
-const MeldekortEtterregistrering = ({ language, meldekortStatus, dagpenger }: Props) => {
-  const antallEtterregistrerteMeldekort = meldekortStatus.meldekortTilUtfylling.filter(
-    (meldekort) => meldekort.etterregistrering,
-  ).length;
+const MeldekortEtterregistrering = ({ language, meldekortData, dagpenger }: Props) => {
+  const antallEtterregistrerteMeldekort = meldekortData.etterregistrerteMeldekort.length;
 
   if (antallEtterregistrerteMeldekort > 0) {
     const url = dagpenger ? DAGPENGER_MELDEKORT_URL : ETTERREGISTRERING_MELDEKORT_URL;

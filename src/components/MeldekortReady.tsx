@@ -3,29 +3,25 @@ import { Alert, BodyLong } from "@navikt/ds-react";
 import LinkCard from "@src/components/linkCard/LinkCard.tsx";
 import { text } from "@src/language/text.ts";
 import type { Language } from "@src/language/types.ts";
-import type { MeldekortStatus, MeldekortTilUtfylling } from "@src/types/MeldekortType.ts";
+import type { MeldekortData, MeldekortTilUtfylling } from "@src/types/MeldekortType.ts";
 import { formatDate } from "@src/utils/dates.ts";
 import dayjs from "dayjs";
 
 interface Props {
   language: Language;
-  meldekortStatus: MeldekortStatus;
+  meldekortData: MeldekortData;
   dagpenger: boolean;
 }
 
-const MeldekortReady = ({ language, meldekortStatus, dagpenger }: Props) => {
+const MeldekortReady = ({ language, meldekortData, dagpenger }: Props) => {
   const url = dagpenger ? DAGPENGER_MELDEKORT_URL : MELDEKORT_URL;
 
-  let nesteMeldekort: MeldekortTilUtfylling | null = null;
-
-  if (meldekortStatus.meldekortTilUtfylling.length > 0) {
-    nesteMeldekort = meldekortStatus.meldekortTilUtfylling[0];
-  }
-
-  const title = createReadyForInnsendingText(language, meldekortStatus);
-  const dato = createDatoLabel(language, nesteMeldekort);
-  const risikererTrekk = nesteMeldekort ? dayjs().isAfter(nesteMeldekort.fristForInnsending) : false;
-  const risikererTrekkDescription = createRisikererTrekkDescription(language, nesteMeldekort);
+  const title = createReadyForInnsendingText(language, meldekortData.ordinareMeldekort);
+  const dato = createDatoLabel(language, meldekortData.nesteMeldekort);
+  const risikererTrekk = meldekortData.nesteMeldekort
+    ? dayjs().isAfter(meldekortData.nesteMeldekort.fristForInnsending)
+    : false;
+  const risikererTrekkDescription = createRisikererTrekkDescription(language, meldekortData.nesteMeldekort);
 
   return (
     <LinkCard language={language} href={url} dagpenger={dagpenger}>
@@ -37,14 +33,11 @@ const MeldekortReady = ({ language, meldekortStatus, dagpenger }: Props) => {
   );
 };
 
-const createReadyForInnsendingText = (language: Language, meldekortStatus: MeldekortStatus) => {
-  if (meldekortStatus.meldekortTilUtfylling.length === 1) {
+const createReadyForInnsendingText = (language: Language, ordinareMeldekort: MeldekortTilUtfylling[]) => {
+  if (ordinareMeldekort.length === 1) {
     return text.sendInnEttMeldekort[language];
-  } else if (meldekortStatus.meldekortTilUtfylling.length > 1) {
-    return text.sendInnFlereMeldekort[language].replace(
-      "{count}",
-      meldekortStatus.meldekortTilUtfylling.length.toString() || "0",
-    );
+  } else if (ordinareMeldekort.length > 1) {
+    return text.sendInnFlereMeldekort[language].replace("{count}", ordinareMeldekort.length.toString());
   } else {
     return "";
   }
