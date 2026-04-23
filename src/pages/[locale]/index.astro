@@ -34,7 +34,7 @@ const language = Astro.currentLocale as Language;
 
 {isLocal &&
 <meta charset="UTF-8"/>}
-<section class="meldekort-mikrofrontend">
+<div class="meldekort-mikrofrontend">
   <div class={styles.microfrontend}>
     <MeldekortEtterregistrering language={language} meldekortData={arenaData} dagpenger={false}/>
     {arenaData.isPendingForInnsending ? <MeldekortPending language={language} meldekortData={arenaData} dagpenger={false}/> : null}
@@ -43,4 +43,4 @@ const language = Astro.currentLocale as Language;
     {dpData.isPendingForInnsending ? <MeldekortPending language={language} meldekortData={dpData} dagpenger={true}/> : null}
     {dpData.isReadyForInnsending ? <MeldekortReady language={language} meldekortData={dpData} dagpenger={true}/> : null}
   </div>
-</section>
+</div>

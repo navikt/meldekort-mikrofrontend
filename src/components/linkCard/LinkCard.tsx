@@ -17,7 +17,7 @@ const LinkCard = ({ language, href, dagpenger, warning, children }: Props) => {
   return (
     <a className={styles.container} href={href}>
       <div className={styles.headerContainer}>
-        <Heading size="small" level="2">
+        <Heading size="small" level="3">
           {dagpenger ? text.tittelDagpenger[language] : text.tittel[language]}
         </Heading>
         <div className={styles.chevronContainer}>
