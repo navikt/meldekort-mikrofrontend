@@ -13,11 +13,11 @@ const language = Astro.currentLocale as Language;
 ---
 
 {isLocal && <meta charset="UTF-8" />}
-<section class="meldekort-mikrofrontend">
+<div class="meldekort-mikrofrontend">
   <div class={styles.microfrontend}>
     <Heading size="medium" level="2">
       {text.tittel[language]}
     </Heading>
     {text.feilmelding[language]}
   </div>
-</section>
+</div>
