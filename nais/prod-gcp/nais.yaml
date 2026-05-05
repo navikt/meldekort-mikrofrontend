@@ -52,8 +52,8 @@ spec:
     - name: MELDEKORTREGISTER_URL
       value: "http://dp-meldekortregister.teamdagpenger/meldekortstatus"
     - name: MELDEKORT_URL
-      value: "https://www.nav.no/meldekort"
+      value: "https://www.nav.no/felles-meldekort"
     - name: ETTERREGISTRERING_MELDEKORT_URL
-      value: "https://www.nav.no/meldekort/etterregistrer-meldekort"
+      value: "https://www.nav.no/felles-meldekort/etterregistrer-meldekort"
     - name: DAGPENGER_MELDEKORT_URL
       value: "https://www.nav.no/arbeid/dagpenger/meldekort"
