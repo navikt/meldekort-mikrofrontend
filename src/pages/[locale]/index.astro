@@ -44,3 +44,29 @@ const language = Astro.currentLocale as Language;
     {dpData.isReadyForInnsending ? <MeldekortReady language={language} meldekortData={dpData} dagpenger={true}/> : null}
   </div>
 </div>
+
+<script>
+  import { getAnalyticsInstance } from "@navikt/nav-dekoratoren-moduler";
+
+  const analyticsLogger = getAnalyticsInstance("meldekort-mikrofrontend");
+
+  const logEvent = async (lenketekst: string, destinasjon: string, lenkegruppe?: string) => {
+    await analyticsLogger("navigere", {
+      lenketekst: lenketekst,
+      destinasjon: destinasjon,
+      lenkegruppe: lenkegruppe,
+    });
+  };
+
+  const microfrontendRoot = document.querySelector(".meldekort-mikrofrontend");
+  const links = microfrontendRoot?.querySelectorAll("a") ?? [];
+
+  links.forEach(link => {
+    link.addEventListener("click", function () {
+      const lenketekst = this.textContent || "Uten tekst";
+      const destinasjon = this.href;
+
+      logEvent(lenketekst, destinasjon);
+    });
+  });
+</script>
