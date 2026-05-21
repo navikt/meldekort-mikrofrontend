@@ -15,7 +15,7 @@
   "dependencies": {
     "@astrojs/check": "0.9.9",
     "@astrojs/node": "10.1.0",
-    "@astrojs/react": "5.0.4",
+    "@astrojs/react": "5.0.5",
     "@navikt/aksel-icons": "8.10.5",
     "@navikt/ds-css": "8.10.5",
     "@navikt/ds-react": "8.10.5",
