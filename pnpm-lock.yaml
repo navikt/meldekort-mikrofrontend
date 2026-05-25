@@ -53,7 +53,7 @@ importers:
         version: 2.4.15
       '@hono/node-server':
         specifier: 2.0.2
-        version: 2.0.2(hono@4.12.18)
+        version: 2.0.2(hono@4.12.19)
       '@types/node':
         specifier: 25.7.0
         version: 25.7.0
@@ -70,8 +70,8 @@ importers:
         specifier: 0.28.0
         version: 0.28.0
       hono:
-        specifier: 4.12.18
-        version: 4.12.18
+        specifier: 4.12.19
+        version: 4.12.19
       husky:
         specifier: 9.1.7
         version: 9.1.7
@@ -1799,8 +1799,8 @@ packages:
   hastscript@9.0.1:
     resolution: {integrity: sha512-g7df9rMFX/SPi34tyGCyUBREQoKkapwdY/T04Qn9TDWfHhAYt4/I0gMVirzK5wEzeUqIjEB+LXC/ypb7Aqno5w==}
 
-  hono@4.12.18:
-    resolution: {integrity: sha512-RWzP96k/yv0PQfyXnWjs6zot20TqfpfsNXhOnev8d1InAxubW93L11/oNUc3tQqn2G0bSdAOBpX+2uDFHV7kdQ==}
+  hono@4.12.19:
+    resolution: {integrity: sha512-xa3eYXYXx68XTT4hZ7dRzsXBhaq85ToSrlUJNoR0gwz/1Ap/CNwX47wfvV7pc/xWhjKVVkLT7zBJy8chhNguqQ==}
     engines: {node: '>=16.9.0'}
 
   html-dom-parser@7.1.0:
@@ -3376,9 +3376,9 @@ snapshots:
       protobufjs: 7.6.0
       yargs: 17.7.2
 
-  '@hono/node-server@2.0.2(hono@4.12.18)':
+  '@hono/node-server@2.0.2(hono@4.12.19)':
     dependencies:
-      hono: 4.12.18
+      hono: 4.12.19
 
   '@img/colour@1.1.0':
     optional: true
@@ -4606,7 +4606,7 @@ snapshots:
       property-information: 7.1.0
       space-separated-tokens: 2.0.2
 
-  hono@4.12.18: {}
+  hono@4.12.19: {}
 
   html-dom-parser@7.1.0:
     dependencies:
