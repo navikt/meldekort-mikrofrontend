@@ -37,7 +37,7 @@
     "esbuild": "0.28.0",
     "hono": "4.12.19",
     "husky": "9.1.7",
-    "lint-staged": "17.0.4",
+    "lint-staged": "17.0.5",
     "postcss": "8.5.14",
     "postcss-prefix-selector": "2.1.1",
     "prettier": "3.8.3",
