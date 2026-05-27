@@ -41,7 +41,7 @@
     "postcss": "8.5.14",
     "postcss-prefix-selector": "2.1.1",
     "prettier": "3.8.3",
-    "tsx": "4.22.1",
+    "tsx": "4.22.3",
     "typescript": "6.0.3"
   },
   "overrides": {
