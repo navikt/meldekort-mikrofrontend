@@ -64,7 +64,7 @@ jobs:
     permissions:
       contents: "read"
       id-token: "write"
-    needs: [build]
+    needs: [build, deploy-dev]
     steps:
       - uses: "actions/checkout@v6"
       - name: "Deploy to prod"
