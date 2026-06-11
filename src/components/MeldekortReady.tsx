@@ -16,7 +16,10 @@ interface Props {
 const MeldekortReady = ({ language, meldekortData, dagpenger }: Props) => {
   const url = dagpenger ? DAGPENGER_MELDEKORT_URL : MELDEKORT_URL;
 
-  const title = createReadyForInnsendingText(language, meldekortData.ordinareMeldekort);
+  const title = createReadyForInnsendingText(
+    language,
+    meldekortData.ordinareMeldekort.filter((item) => !dayjs().isBefore(item.kanSendesFra)),
+  );
   const dato = createDatoLabel(language, meldekortData.nesteMeldekort);
   const risikererTrekk = meldekortData.nesteMeldekort
     ? dayjs().isAfter(meldekortData.nesteMeldekort.fristForInnsending)

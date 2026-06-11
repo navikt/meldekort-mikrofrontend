@@ -7,7 +7,7 @@ Mikrofrontend som vises på Min Side.
 1. Installer dependencies: `pnpm install`
 2. Start hono mockserver: `pnpm run mock`
 3. Med mockserver kjørende i egen terminal, start appen: `pnpm run dev`
-4. Appen nås på http://localhost:4321/
+4. Appen nås på http://localhost:4321/nb/
 
 # Henvendelser
 
