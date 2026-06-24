@@ -17,7 +17,7 @@ jobs:
       packages: "write"
 
     steps:
-      - uses: "actions/checkout@v6.0.3"
+      - uses: "actions/checkout@v7.0.0"
       - name: "Build and push"
         uses: nais/docker-build-push@v0
         id: docker-build-push
@@ -50,7 +50,7 @@ jobs:
       id-token: "write"
     needs: [build]
     steps:
-      - uses: "actions/checkout@v6.0.3"
+      - uses: "actions/checkout@v7.0.0"
       - name: "Deploy to dev"
         uses: "nais/deploy/actions/deploy@v2"
         env:
@@ -66,7 +66,7 @@ jobs:
       id-token: "write"
     needs: [build, deploy-dev]
     steps:
-      - uses: "actions/checkout@v6.0.3"
+      - uses: "actions/checkout@v7.0.0"
       - name: "Deploy to prod"
         uses: "nais/deploy/actions/deploy@v2"
         env:
