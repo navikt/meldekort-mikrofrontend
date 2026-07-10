@@ -2,7 +2,7 @@ import { logs, NodeSDK } from "@opentelemetry/sdk-node";
 import pino from "pino";
 
 const sdk = new NodeSDK({
-  logRecordProcessors: [new logs.SimpleLogRecordProcessor(new logs.ConsoleLogRecordExporter())],
+  logRecordProcessors: [new logs.SimpleLogRecordProcessor({ exporter: new logs.ConsoleLogRecordExporter() })],
 });
 
 sdk.start();
