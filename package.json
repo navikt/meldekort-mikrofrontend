@@ -35,13 +35,13 @@
     "@types/react-dom": "19.2.3",
     "astro": "7.0.7",
     "esbuild": "0.28.1",
-    "hono": "4.12.28",
+    "hono": "4.12.30",
     "husky": "9.1.7",
     "lint-staged": "17.0.8",
-    "postcss": "8.5.16",
+    "postcss": "8.5.18",
     "postcss-prefix-selector": "2.1.1",
     "prettier": "3.9.5",
-    "tsx": "4.23.0",
+    "tsx": "4.23.1",
     "typescript": "6.0.3"
   },
   "overrides": {
