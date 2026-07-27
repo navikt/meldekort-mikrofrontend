@@ -42,7 +42,7 @@ RUN --mount=type=secret,id=NODE_AUTH_TOKEN \
 RUN rm -rf node_modules/.pnpm/@esbuild*
 
 # runtime
-FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:26@sha256:2d58c25e11645d9444e86927957717912d768f7d21938b8703743d9dc06b6f2d AS runtime
+FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:26@sha256:b42250bd84d56dac0599351b0b476bca82c487ca94ba7efc6f4bdbf1329831ce AS runtime
 COPY --from=prod-deps /usr/src/app/node_modules ./node_modules
 COPY --from=build /usr/src/app/dist ./dist
 
