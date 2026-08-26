@@ -42,7 +42,7 @@
     "postcss-prefix-selector": "2.1.1",
     "prettier": "3.9.6",
     "tsx": "4.23.12",
-    "typescript": "6.0.3"
+    "typescript": "7.0.2"
   },
   "lint-staged": {
     "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": ["biome check --write --no-errors-on-unmatched"]
