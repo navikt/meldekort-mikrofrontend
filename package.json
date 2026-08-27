@@ -15,7 +15,7 @@
   "dependencies": {
     "@astrojs/check": "0.9.10",
     "@astrojs/node": "11.1.4",
-    "@astrojs/react": "6.0.3",
+    "@astrojs/react": "6.0.4",
     "@navikt/aksel-icons": "8.16.1",
     "@navikt/ds-css": "8.16.1",
     "@navikt/ds-react": "8.16.1",
@@ -33,7 +33,7 @@
     "@types/node": "26.2.0",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.4",
-    "astro": "7.2.3",
+    "astro": "7.2.4",
     "esbuild": "0.28.2",
     "hono": "4.13.3",
     "husky": "9.1.7",
