@@ -10,6 +10,9 @@ export default defineConfig({
     inlineStylesheets: "always",
   },
   vite: {
+    build: {
+      sourcemap: true,
+    },
     css: {
       postcss: {
         plugins: [
