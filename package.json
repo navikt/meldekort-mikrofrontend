@@ -33,7 +33,7 @@
     "@types/node": "26.6.2",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
-    "astro": "7.3.3",
+    "astro": "7.3.4",
     "esbuild": "0.28.2",
     "hono": "4.13.8",
     "husky": "9.1.7",
