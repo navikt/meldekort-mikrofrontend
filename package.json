@@ -16,7 +16,7 @@
     "@astrojs/check": "0.9.10",
     "@astrojs/node": "11.1.6",
     "@astrojs/react": "7.0.0",
-    "@navikt/aksel-icons": "8.17.2",
+    "@navikt/aksel-icons": "8.18.0",
     "@navikt/ds-css": "8.17.2",
     "@navikt/ds-react": "8.17.2",
     "@navikt/nav-dekoratoren-moduler": "4.5.0",
