@@ -176,8 +176,8 @@ importers:
         specifier: 7.0.1
         version: 7.0.1(@types/node@26.6.4)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(esbuild@0.28.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(tsx@4.23.15)(yaml@2.9.1)
       '@navikt/aksel-icons':
-        specifier: 8.18.0
-        version: 8.18.0
+        specifier: 8.19.0
+        version: 8.19.0
       '@navikt/ds-css':
         specifier: 8.19.0
         version: 8.19.0
@@ -926,8 +926,8 @@ packages:
       '@emnapi/core': ^1.7.1 || ^2.0.0-alpha.4
       '@emnapi/runtime': ^1.7.1 || ^2.0.0-alpha.4
 
-  '@navikt/aksel-icons@8.18.0':
-    resolution: {integrity: sha512-pN15b6dQxDiPdJbXcL7W9xJ0sPUHo5GKM5ltAQ8kLb3Mf5is6Mf6gfON1nwft+aB8WlehDrTTseXVwu1BEfmQA==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.18.0/fcb261e25fc2aea91307c75b7429a27a0f5eaef9}
+  '@navikt/aksel-icons@8.19.0':
+    resolution: {integrity: sha512-9ENUIokS5kvHtjjzQWICPqq5yxqL/bQ2PHr2T3xyhuU/T/7EqV4x+VcJtBIZ6H4hDTdr1kMccHSDRm7IY6O7uQ==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.19.0/e0331b96fecc072f758ecd504cd55f7330191186}
 
   '@navikt/aksel-icons@8.19.2':
     resolution: {integrity: sha512-QFqO/2GFNKgB1NLQ2KAhWNegn/+Tevj1wlvrImSRdWPg6QGvlrBRjDbZxclRrosqMtYqYzF3BWMtAb5f8tmvgw==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.19.2/93c1fb9b90a3f3cff84b1f4b430940b51f1caa18}
@@ -3230,7 +3230,7 @@ snapshots:
       '@emnapi/runtime': 1.11.3
       '@tybys/wasm-util': 0.10.4
 
-  '@navikt/aksel-icons@8.18.0': {}
+  '@navikt/aksel-icons@8.19.0': {}
 
   '@navikt/aksel-icons@8.19.2': {}
 
