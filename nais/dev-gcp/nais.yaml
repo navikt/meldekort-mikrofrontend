@@ -4,7 +4,10 @@ metadata:
   name: meldekort-mikrofrontend
   namespace: meldekort
   labels:
-    team: meldekort
+    team: "meldekort"
+    fagsystem: "DAGPENGER"
+    domene: "meldekort"
+    okonomisystem: "false"
 spec:
   tokenx:
     enabled: true
