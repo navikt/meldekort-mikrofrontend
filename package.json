@@ -13,8 +13,8 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@astrojs/check": "0.9.10",
-    "@astrojs/node": "11.1.8",
+    "@astrojs/check": "0.9.11",
+    "@astrojs/node": "11.1.9",
     "@astrojs/react": "7.1.0",
     "@navikt/aksel-icons": "8.19.2",
     "@navikt/ds-css": "8.19.2",
@@ -33,7 +33,7 @@
     "@types/node": "26.6.5",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
-    "astro": "7.4.0",
+    "astro": "7.4.1",
     "esbuild": "0.28.2",
     "hono": "4.13.13",
     "husky": "9.1.7",
