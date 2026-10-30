@@ -35,16 +35,12 @@ export const hentMeldekortstatus = async (oboToken: string, audience: string, ur
       },
     });
 
-    if (!dataResponse.ok && dataResponse.status !== 404) {
-      logger.error(`dataResponse fra ${url} feilet med status ${dataResponse.status}`);
-      return meldekortstatus;
-    }
-
-    if (dataResponse.status !== 404) {
+    if (dataResponse.status === 200) {
       meldekortstatus = await dataResponse.json();
-    } else {
+    } else if (dataResponse.status === 204 || dataResponse.status === 404) {
       logger.info("Person finnes ikke");
-      return meldekortstatus;
+    } else {
+      logger.error(`dataResponse fra ${url} feilet med status ${dataResponse.status}`);
     }
   } catch (e) {
     logger.error(`Feil ved henting av data fra ${url}: ${e}`);
