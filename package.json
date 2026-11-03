@@ -39,7 +39,7 @@
     "hono": "4.13.14",
     "husky": "9.1.7",
     "lint-staged": "17.6.0",
-    "postcss": "8.5.31",
+    "postcss": "8.5.32",
     "postcss-prefix-selector": "2.2.1",
     "prettier": "3.9.10",
     "tsx": "4.23.15",
