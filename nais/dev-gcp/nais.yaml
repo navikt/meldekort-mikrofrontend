@@ -39,6 +39,8 @@ spec:
         - application: meldekort-api-q2
         - application: dp-meldekortregister
           namespace: teamdagpenger
+        - application: dp-meldekort
+          namespace: teamdagpenger
   resources:
     limits:
       memory: 768Mi
@@ -51,9 +53,9 @@ spec:
     - name: MELDEKORT_API_URL
       value: "http://meldekort-api-q2.meldekort/meldekort/meldekort-api/api/person/meldekortstatus"
     - name: MELDEKORTREGISTER_AUDIENCE
-      value: "dev-gcp:teamdagpenger:dp-meldekortregister"
+      value: "dev-gcp:teamdagpenger:dp-meldekort"
     - name: MELDEKORTREGISTER_URL
-      value: "http://dp-meldekortregister.teamdagpenger/meldekortstatus"
+      value: "http://dp-meldekort.teamdagpenger/meldekortstatus"
     - name: MELDEKORT_URL
       value: "https://meldekort-frontend-q2.intern.dev.nav.no/felles-meldekort"
     - name: ETTERREGISTRERING_MELDEKORT_URL
