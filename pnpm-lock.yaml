@@ -222,8 +222,8 @@ importers:
         specifier: 2.6.6
         version: 2.6.6
       '@hono/node-server':
-        specifier: 2.1.6
-        version: 2.1.6(hono@4.13.18)
+        specifier: 2.1.7
+        version: 2.1.7(hono@4.13.18)
       '@types/node':
         specifier: 26.6.6
         version: 26.6.6
@@ -804,8 +804,8 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
-  '@hono/node-server@2.1.6':
-    resolution: {integrity: sha512-p/KH9MnfNcsm3sR6x4lNgm5j+QN4Et8srKredl9DZfXiyZ1UQ3aQ2YVpFLbqktYN5JI+DB+VZFKM2PqE5hLKjQ==}
+  '@hono/node-server@2.1.7':
+    resolution: {integrity: sha512-Wr0E6S+v2Bw9FkpGNP5BQ5QbJvclUa06UVehd65WFZe6XeJwbrKQQ5wPDevc0IC+QyzbO7v3Llh5uo45IZcSnA==}
     engines: {node: '>=20'}
     peerDependencies:
       hono: ^4 || ^5.0.0-0
@@ -3192,7 +3192,7 @@ snapshots:
       protobufjs: 7.6.6
       yargs: 17.7.3
 
-  '@hono/node-server@2.1.6(hono@4.13.18)':
+  '@hono/node-server@2.1.7(hono@4.13.18)':
     dependencies:
       hono: 4.13.18
 
