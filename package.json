@@ -41,7 +41,7 @@
     "lint-staged": "17.6.0",
     "postcss": "8.5.32",
     "postcss-prefix-selector": "2.2.1",
-    "prettier": "3.10.0",
+    "prettier": "3.10.1",
     "tsx": "4.23.15",
     "typescript": "6.0.3"
   },
