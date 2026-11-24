@@ -1,0 +1,65 @@
+name: Build and deploy Branch
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        type: choice
+        default: dev
+        options:
+          - dev
+        required: true
+
+jobs:
+  build:
+    name: "build"
+    runs-on: "ubuntu-latest"
+
+    permissions:
+      contents: "read"
+      id-token: "write"
+      packages: "write"
+
+    steps:
+      - uses: "actions/checkout@v7.0.1"
+      - name: "Build and push"
+        uses: nais/docker-build-push@v1
+        id: docker-build-push
+        with:
+          team: meldekort
+          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+          build_secrets: NODE_AUTH_TOKEN=${{ secrets.READER_TOKEN }}
+      - name: "Build static files"
+        uses: docker/build-push-action@v7.4.0
+        with:
+          target: export
+          outputs: type=local,dest=build
+          secrets: NODE_AUTH_TOKEN=${{ secrets.READER_TOKEN }}
+      - name: "Upload to cdn"
+        uses: nais/deploy/actions/cdn-upload/v2@master
+        with:
+          team: meldekort
+          source: ./build/dist/client/_astro
+          destination: "meldekort-mikrofrontend"
+          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+    outputs:
+      image: ${{ steps.docker-build-push.outputs.image }}
+
+  deploy-branch:
+    name: Deploy branch
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    environment: ${{ inputs.environment }}-gcp
+    steps:
+      - uses: "actions/checkout@v7.0.1"
+      - uses: "nais/deploy/actions/deploy@v3"
+        env:
+          CLUSTER: ${{ inputs.environment }}-gcp
+          RESOURCE: nais/${{ inputs.environment }}-gcp/nais.yaml
+          VAR: image=${{ needs.build.outputs.image }},version=${{ github.sha }}
