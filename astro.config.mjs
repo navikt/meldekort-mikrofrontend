@@ -63,15 +63,15 @@ export default defineConfig({
         access: "secret",
         default: "http://localhost:3000/meldekort-api/meldekortstatus",
       }),
-      MELDEKORTREGISTER_AUDIENCE: envField.string({
+      DP_MELDEKORT_AUDIENCE: envField.string({
         context: "server",
         access: "secret",
-        default: "test:teamdagpenger:dp-meldekortregister",
+        default: "test:teamdagpenger:dp-meldekort",
       }),
-      MELDEKORTREGISTER_URL: envField.string({
+      DP_MELDEKORT_URL: envField.string({
         context: "server",
         access: "secret",
-        default: "http://localhost:3000/meldekortregister/meldekortstatus",
+        default: "http://localhost:3000/meldekort/meldekortstatus",
       }),
     },
   },

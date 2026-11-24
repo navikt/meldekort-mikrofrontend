@@ -1,8 +1,8 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
+import dpMeldekortData from "./data/dp-meldekort.json";
 import meldekortApiData from "./data/meldekort-api.json";
-import meldekortregisterData from "./data/meldekortregister.json";
 
 const api = new Hono();
 
@@ -19,8 +19,8 @@ api.get("/meldekort-api/meldekortstatus", (c) => {
   return c.json(meldekortApiData);
 });
 
-api.get("/meldekortregister/meldekortstatus", (c) => {
-  return c.json(meldekortregisterData);
+api.get("/meldekort/meldekortstatus", (c) => {
+  return c.json(dpMeldekortData);
 });
 
 serve(api);
