@@ -20,7 +20,7 @@
     "@navikt/ds-css": "8.23.0",
     "@navikt/ds-react": "8.23.0",
     "@navikt/nav-dekoratoren-moduler": "4.6.0",
-    "@navikt/oasis": "4.2.2",
+    "@navikt/oasis": "4.2.3",
     "@opentelemetry/sdk-logs": "3.1.1",
     "@opentelemetry/sdk-node": "0.301.2",
     "dayjs": "1.11.23",
