@@ -37,7 +37,7 @@ spec:
         - application: logging
           namespace: nais-system
         - application: meldekort-api
-        - application: dp-meldekortregister
+        - application: dp-meldekort
           namespace: teamdagpenger
   resources:
     limits:
@@ -50,10 +50,10 @@ spec:
       value: "prod-gcp:meldekort:meldekort-api"
     - name: MELDEKORT_API_URL
       value: "http://meldekort-api.meldekort/meldekort/meldekort-api/api/person/meldekortstatus"
-    - name: MELDEKORTREGISTER_AUDIENCE
-      value: "prod-gcp:teamdagpenger:dp-meldekortregister"
-    - name: MELDEKORTREGISTER_URL
-      value: "http://dp-meldekortregister.teamdagpenger/meldekortstatus"
+    - name: DP_MELDEKORT_AUDIENCE
+      value: "prod-gcp:teamdagpenger:dp-meldekort"
+    - name: DP_MELDEKORT_URL
+      value: "http://dp-meldekort.teamdagpenger/meldekortstatus"
     - name: MELDEKORT_URL
       value: "https://www.nav.no/felles-meldekort"
     - name: ETTERREGISTRERING_MELDEKORT_URL

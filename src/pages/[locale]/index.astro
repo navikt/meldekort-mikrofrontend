@@ -11,8 +11,8 @@ import { hentMeldekortstatus, prosesserMeldekortDataFraApi } from "@src/utils/me
 import {
   MELDEKORT_API_AUDIENCE,
   MELDEKORT_API_URL,
-  MELDEKORTREGISTER_AUDIENCE,
-  MELDEKORTREGISTER_URL
+  DP_MELDEKORT_AUDIENCE,
+  DP_MELDEKORT_URL
 } from "astro:env/server";
 import type { MeldekortStatus } from "@src/types/MeldekortType.ts";
 
@@ -21,7 +21,7 @@ let meldekortStatusFraDp: MeldekortStatus;
 
 try {
   meldekortStatusFraArena = await hentMeldekortstatus(Astro.locals.token, MELDEKORT_API_AUDIENCE || "", MELDEKORT_API_URL || "");
-  meldekortStatusFraDp = await hentMeldekortstatus(Astro.locals.token, MELDEKORTREGISTER_AUDIENCE || "", MELDEKORTREGISTER_URL || "");
+  meldekortStatusFraDp = await hentMeldekortstatus(Astro.locals.token, DP_MELDEKORT_AUDIENCE || "", DP_MELDEKORT_URL || "");
 } catch (error) {
   logger.error("Error fetching meldekortdata: " + error);
   return new Response("Internal Server Error", { status: 503 });
